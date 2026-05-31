@@ -2,543 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Ethereal Echoes · Glassmorphism Portfolio</title>
-    <!-- Google Fonts: elegant & modern -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (free icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(circle at 10% 30%, #1a2a3a, #0a0f1c);
-            min-height: 100vh;
-            padding: 2rem 1.5rem;
-            color: #f0f3fa;
-            line-height: 1.4;
-        }
-
-        /* animated background grains / subtle moving gradient */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 40% 50%, rgba(255,255,245,0.02) 0%, rgba(0,0,0,0.2) 100%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* main container - glass panel grid */
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* GLASS COMPONENTS */
-        .glass-card {
-            background: rgba(25, 35, 55, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.1);
-            transition: all 0.25s ease;
-        }
-
-        .glass-card:hover {
-            background: rgba(35, 48, 70, 0.45);
-            border-color: rgba(255, 255, 255, 0.35);
-            transform: translateY(-3px);
-            box-shadow: 0 25px 40px -14px rgba(0, 0, 0, 0.4);
-        }
-
-        /* header / hero section */
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            padding: 2rem 2rem;
-        }
-
-        .avatar-area {
-            flex-shrink: 0;
-        }
-
-        .avatar {
-            width: 130px;
-            height: 130px;
-            background: linear-gradient(135deg, #a7c0e0, #3a4b6e);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.8rem;
-            color: white;
-            box-shadow: 0 15px 25px -8px rgba(0,0,0,0.3);
-            border: 2px solid rgba(255,255,240,0.6);
-        }
-
-        .intro-text h1 {
-            font-size: 2.6rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            background: linear-gradient(130deg, #ffffff, #c2d6ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .intro-text .tagline {
-            font-size: 1.2rem;
-            font-weight: 400;
-            opacity: 0.85;
-            margin-bottom: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .tagline i {
-            margin-right: 6px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.2rem;
-            margin-top: 0.8rem;
-        }
-
-        .social-links a {
-            color: #eef4ff;
-            font-size: 1.5rem;
-            transition: 0.2s;
-            opacity: 0.8;
-        }
-
-        .social-links a:hover {
-            opacity: 1;
-            transform: scale(1.08);
-            color: white;
-        }
-
-        /* about + info row */
-        .info-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.8rem;
-            margin-bottom: 3rem;
-        }
-
-        .info-card {
-            flex: 1;
-            min-width: 200px;
-            padding: 1.5rem 1.8rem;
-            background: rgba(20, 28, 40, 0.4);
-            backdrop-filter: blur(12px);
-            border-radius: 1.8rem;
-            border: 1px solid rgba(255,255,245,0.2);
-        }
-
-        .info-card i {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #bdd4ff;
-        }
-
-        .info-card h3 {
-            font-weight: 500;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.2px;
-        }
-
-        .info-card p, .info-card a {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            color: #eef2ff;
-            text-decoration: none;
-        }
-
-        .section-title {
-            font-size: 1.9rem;
-            font-weight: 600;
-            margin: 2rem 0 1.2rem 0;
-            letter-spacing: -0.3px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-left: 4px solid #9bbaff;
-            padding-left: 1rem;
-        }
-
-        /* project grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 1.8rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .project-card {
-            padding: 1.6rem;
-            background: rgba(20, 28, 40, 0.45);
-            backdrop-filter: blur(10px);
-            border-radius: 1.8rem;
-            transition: all 0.2s;
-            border: 1px solid rgba(255,255,245,0.2);
-        }
-
-        .project-icon {
-            font-size: 2.2rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .project-card h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 0.6rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 0.8rem 0;
-        }
-
-        .tag {
-            background: rgba(255,255,250,0.15);
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-            backdrop-filter: blur(2px);
-        }
-
-        .project-desc {
-            font-size: 0.9rem;
-            opacity: 0.85;
-            margin: 0.8rem 0;
-            line-height: 1.4;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #bfd6ff;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-top: 0.8rem;
-            text-decoration: none;
-            border-bottom: 1px dashed rgba(255,255,200,0.4);
-        }
-
-        .project-link:hover {
-            color: white;
-        }
-
-        /* music / art special section */
-        .creative-highlight {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.8rem;
-            margin: 2rem 0 2.5rem;
-        }
-
-        .creative-card {
-            flex: 1;
-            padding: 1.5rem;
-            background: rgba(30, 40, 58, 0.4);
-            backdrop-filter: blur(12px);
-            border-radius: 1.8rem;
-            transition: 0.2s;
-            border: 1px solid rgba(255,255,245,0.2);
-        }
-
-        .creative-card i {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #c2b6ff, #9ab3f5);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .soundcloud-player {
-            margin-top: 12px;
-            border-radius: 16px;
-            overflow: hidden;
-            max-width: 100%;
-        }
-
-        iframe {
-            border-radius: 18px;
-            width: 100%;
-            border: none;
-        }
-
-        .art-gallery {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .art-thumb {
-            background: rgba(0,0,0,0.35);
-            border-radius: 18px;
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            backdrop-filter: blur(4px);
-        }
-
-        hr {
-            margin: 2rem 0 1rem;
-            border-color: rgba(255,255,245,0.15);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem 0.5rem 1rem;
-            font-size: 0.85rem;
-            opacity: 0.7;
-        }
-
-        button, .fake-button {
-            background: rgba(255,255,245,0.1);
-            border: 1px solid rgba(255,255,255,0.25);
-            border-radius: 40px;
-            padding: 0.4rem 1rem;
-            color: white;
-            font-size: 0.8rem;
-            cursor: default;
-        }
-
-        /* responsive adjustments */
-        @media (max-width: 720px) {
-            body {
-                padding: 1.2rem;
-            }
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-            .intro-text h1 {
-                font-size: 2rem;
-            }
-            .section-title {
-                font-size: 1.6rem;
-            }
-            .social-links {
-                justify-content: center;
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<div class="container">
-    <!-- Hero & profile section -->
-    <div class="glass-card hero">
-        <div class="avatar-area">
-            <div class="avatar">
-                <i class="fas fa-user-astronaut"></i>
+
+    <div class="bg-glow circle-1"></div>
+    <div class="bg-glow circle-2"></div>
+
+    <div class="container">
+        <aside class="glass-card profile-sidebar">
+            <div class="profile-img">
+                <img src="https://via.placeholder.com/150" alt="Profile Picture">
             </div>
-        </div>
-        <div class="intro-text">
-            <h1>Alex Morgan · creative spectrum</h1>
-            <div class="tagline">
-                <span><i class="fas fa-palette"></i> digital artist</span>
-                <span><i class="fas fa-head-side-vr"></i> music producer</span>
-                <span><i class="fas fa-cubes"></i> indie creator</span>
-            </div>
-            <p style="max-width: 500px; opacity: 0.9;">Blending pixels, synths & code — crafting surreal digital worlds and melodic stories. Based in Brooklyn / remote.</p>
+            <h2>Your Name</h2>
+            <p class="tagline">Multidisciplinary Creator</p>
+            <p class="bio">Welcome to my digital space. I create digital art, compose music, and build interactive experiences.</p>
+            
             <div class="social-links">
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="SoundCloud"><i class="fab fa-soundcloud"></i></a>
-                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                <a href="#" title="ArtStation"><i class="fab fa-artstation"></i></a>
+                <a href="#" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
             </div>
-        </div>
-        <div style="font-size: 0.9rem; background: rgba(255,255,245,0.08); border-radius: 40px; padding: 0.5rem 1rem;">
-            <i class="fas fa-map-marker-alt"></i>  open for collab
-        </div>
-    </div>
+        </aside>
 
-    <!-- Personal info row: contact + bio quick -->
-    <div class="info-row">
-        <div class="info-card">
-            <i class="fas fa-envelope-open-text"></i>
-            <h3>Contact</h3>
-            <p>alex.morgan@creativ.space</p>
-            <p><i class="fab fa-discord"></i> alex_art#2048</p>
-        </div>
-        <div class="info-card">
-            <i class="fas fa-compass"></i>
-            <h3>Currently exploring</h3>
-            <p>Generative AI art · modular synthesis · WebGL shaders</p>
-        </div>
-        <div class="info-card">
-            <i class="fas fa-award"></i>
-            <h3>Highlights</h3>
-            <p>Featured at Digital Arts Fest '24 · beat tape on NTS radio · solo exhibition 'Neon Reverie'</p>
-        </div>
-    </div>
+        <main class="main-content">
+            <header class="glass-card section-header">
+                <h1>Featured Projects</h1>
+            </header>
 
-    <!-- PERSONAL PROJECTS SECTION: digital art + music + more -->
-    <div class="section-title">
-        <i class="fas fa-project-diagram"></i>  featured projects
-    </div>
+            <div class="projects-grid">
+                <div class="glass-card project-card">
+                    <div class="project-thumb">
+                        <img src="https://via.placeholder.com/400x250" alt="Digital Art Thumbnail">
+                    </div>
+                    <h3>Cyberpunk Dreamscape</h3>
+                    <p class="project-type">Digital Art / Concept</p>
+                    <p>An exploration of neon-soaked environments and futuristic architectural design using digital painting tools.</p>
+                </div>
 
-    <div class="projects-grid">
-        <!-- project 1: digital art series -->
-        <div class="project-card">
-            <div class="project-icon"><i class="fas fa-paintbrush-fine"></i> 🎨</div>
-            <h3>LUCID DREAMLAND</h3>
-            <div class="project-tags">
-                <span class="tag">digital painting</span>
-                <span class="tag">procreate</span>
-                <span class="tag">psychedelic</span>
+                <div class="glass-card project-card">
+                    <div class="project-thumb">
+                        <img src="https://via.placeholder.com/400x250" alt="Music Project Thumbnail">
+                    </div>
+                    <h3>Ambient Echoes</h3>
+                    <p class="project-type">Music / Sound Design</p>
+                    <p>A lo-fi ambient track blending organic field recordings with nostalgic synth pads and soft percussion.</p>
+                </div>
+
+                <div class="glass-card project-card">
+                    <div class="project-thumb">
+                        <img src="https://via.placeholder.com/400x250" alt="Project Thumbnail">
+                    </div>
+                    <h3>Interactive Storytelling</h3>
+                    <p class="project-type">Game Dev / Logic</p>
+                    <p>A branching narrative prototype exploring choice mechanics and immersive environmental storytelling.</p>
+                </div>
             </div>
-            <p class="project-desc">A series of 12 surreal portraits exploring subconscious landscapes. High-res prints and animated loops exhibited online.</p>
-            <a href="#" class="project-link">view gallery →</a>
-        </div>
-
-        <!-- project 2: music album / ep -->
-        <div class="project-card">
-            <div class="project-icon"><i class="fas fa-headphones"></i> 🎧</div>
-            <h3>VELVET NOCTURNE (EP)</h3>
-            <div class="project-tags">
-                <span class="tag">lofi hiphop</span>
-                <span class="tag">ambient</span>
-                <span class="tag">electronic</span>
-            </div>
-            <p class="project-desc">Self-produced EP with warm tape saturation, ethereal vocals & field recordings. Streamed 150k+ across platforms.</p>
-            <a href="#" class="project-link">listen on soundcloud →</a>
-        </div>
-
-        <!-- project 3: interactive web art -->
-        <div class="project-card">
-            <div class="project-icon"><i class="fas fa-globe"></i> ✨</div>
-            <h3>FRAGMENTED SKY</h3>
-            <div class="project-tags">
-                <span class="tag">three.js</span>
-                <span class="tag">interactive</span>
-                <span class="tag">glassmorphism</span>
-            </div>
-            <p class="project-desc">Real-time particle universe where visitors shape the stars. Built with WebGL and generative shaders.</p>
-            <a href="#" class="project-link">launch experience →</a>
-        </div>
-
-        <!-- project 4: typography / digital collage -->
-        <div class="project-card">
-            <div class="project-icon"><i class="fas fa-images"></i> 🖌️</div>
-            <h3>COLLAGE DIARIES</h3>
-            <div class="project-tags">
-                <span class="tag">mixed media</span>
-                <span class="tag">photoshop</span>
-                <span class="tag">surrealism</span>
-            </div>
-            <p class="project-desc">Weekly digital collage series blending vintage magazine cuts with abstract neon gradients.</p>
-            <a href="#" class="project-link">explore archive →</a>
-        </div>
+        </main>
     </div>
 
-    <!-- music & art extra showcase (embedded + demos) -->
-    <div class="section-title">
-        <i class="fas fa-music"></i>  sonic & visual experiments
-    </div>
-    <div class="creative-highlight">
-        <div class="creative-card">
-            <i class="fas fa-head-side-music"></i>
-            <h3 style="margin: 0.5rem 0;">Latest track: "midnight prism"</h3>
-            <p style="font-size: 0.85rem;">Ambient downtempo / dreamy keys + granular synthesis.</p>
-            <div class="soundcloud-player">
-                <!-- embed dummy soundcloud widget (demo style) - using a placeholder widget but it's just aesthetic mock since real link not provided -->
-                <iframe style="border-radius:16px" height="120" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1857516313&color=%23ff7e5e&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false" allow="autoplay"></iframe>
-                <!-- note: above track is an example placeholder (real demo), but looks legit and works as music showcase -->
-            </div>
-            <div style="margin-top: 12px;"><span class="tag">#synthwave</span> <span class="tag">#dreamwave</span></div>
-        </div>
-        <div class="creative-card">
-            <i class="fas fa-palette"></i>
-            <h3 style="margin: 0.5rem 0;">Digital art exhibition</h3>
-            <p style="font-size: 0.85rem;">Selected works from 'Neon Echoes' — AI assisted + hand painted textures.</p>
-            <div class="art-gallery">
-                <div class="art-thumb"><i class="fas fa-image"></i> "Ghost in bloom"</div>
-                <div class="art-thumb"><i class="fas fa-image"></i> "Crystal reverie"</div>
-                <div class="art-thumb"><i class="fas fa-image"></i> "Lunar descent"</div>
-            </div>
-            <a href="#" class="project-link" style="margin-top: 12px; display: inline-block;">full portfolio →</a>
-        </div>
-    </div>
-
-    <!-- music project deeper list / more personal -->
-    <div class="glass-card" style="padding: 1.5rem; margin-bottom: 1rem;">
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
-            <div>
-                <h3><i class="fas fa-headphones-alt"></i>  recent music productions</h3>
-                <p style="margin-top: 6px;">solo releases & collaborative remixes — blending lo-fi, glitch & cinematic ambient</p>
-            </div>
-            <div class="fake-button"><i class="fas fa-play-circle"></i>  listen on spotify</div>
-        </div>
-        <hr>
-        <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: space-between;">
-            <div><i class="fas fa-waveform"></i> "static flowers" — 2025 <span style="opacity: 0.6;">• single</span></div>
-            <div><i class="fas fa-waveform"></i> "drifting shapes" — 2024 <span style="opacity: 0.6;">• EP</span></div>
-            <div><i class="fas fa-waveform"></i> "midnight prism" — 2025 <span style="opacity: 0.6;">• featured</span></div>
-        </div>
-    </div>
-
-    <!-- additional creative tools / fun fact : personal info extended -->
-    <div class="info-row" style="margin-bottom: 1rem;">
-        <div class="info-card">
-            <i class="fas fa-microphone-alt"></i>
-            <h3>gear / tools</h3>
-            <p>iPad Pro + Procreate, Ableton Live, Push 2, Sony A7iii, Blender, VS Code</p>
-        </div>
-        <div class="info-card">
-            <i class="fas fa-heart"></i>
-            <h3>inspirations</h3>
-            <p>Ryuichi Sakamoto, James Jean, Grimes, vaporwave aesthetics, cyberpunk textures</p>
-        </div>
-        <div class="info-card">
-            <i class="fas fa-calendar-alt"></i>
-            <h3>upcoming</h3>
-            <p>Mar 2026: new visual album + NFT exhibition (free mint), sign up for newsletter</p>
-        </div>
-    </div>
-
-    <!-- mini footer with resume / contact cta -->
-    <div style="text-align: center; margin: 2rem 0 0rem;">
-        <div class="glass-card" style="display: inline-block; padding: 0.8rem 1.8rem; border-radius: 100px;">
-            <i class="far fa-envelope"></i>  alex.morgan@creativ.space  &nbsp;|&nbsp;  <i class="fas fa-download"></i>  resume (PDF)
-        </div>
-    </div>
-
-    <footer>
-        <i class="far fa-copyright"></i> 2025 Alex Morgan — glassmorphism studio | built with 🌙 & creative code
-    </footer>
-</div>
-
-<!-- very subtle backdrop filter fallback, no heavy scripts needed -->
 </body>
 </html>
