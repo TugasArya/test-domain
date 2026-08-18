@@ -17,22 +17,26 @@
   </style>
 </head>
 <body class="relative bg-slate-950 text-white min-h-screen antialiased selection:bg-yellow-400 selection:text-slate-950">
-
-  <!-- ========================================== -->
-  <!-- BACKGROUND IMAGE & OVERLAY CONFIGURATION   -->
-  <!-- ========================================== -->
+  
+    <!-- BACKGROUND IMAGE & OVERLAY CONFIGURATION -->
   <div class="fixed inset-0 z-0">
-    <!-- Replace "bg-photo.jpg" with your image URL or local relative path -->
+    <!-- Mobile Background (visible on mobile, hidden on sm and above) -->
     <img 
-      src="bg-photo.jpg" 
-      alt="Background Poster" 
-      class="w-full h-full object-cover"
+      src="bg-mobile.webp" 
+      alt="Mobile Background" 
+      class="block sm:hidden w-full h-full object-cover object-center"
+      loading="eager"
     />
-    <!-- 
-      Dark Tint & Blur Overlay:
-      - Change bg-slate-950/80 to /70 (more image) or /90 (darker background)
-      - Change backdrop-blur-sm to backdrop-blur-md for a stronger blur
-    -->
+  
+    <!-- Desktop Background (hidden on mobile, visible on sm and above) -->
+    <img 
+      src="bg-desktop.webp" 
+      alt="Desktop Background" 
+      class="hidden sm:block w-full h-full object-cover object-center"
+      loading="eager"
+    />
+  
+    <!-- Dark Overlay -->
     <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
   </div>
 
