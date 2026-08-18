@@ -1,4 +1,4 @@
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -16,119 +16,137 @@ html_content = """<!DOCTYPE html>
     }
   </style>
 </head>
-<body class="bg-slate-950 text-white min-h-screen flex flex-col justify-between antialiased selection:bg-yellow-400 selection:text-slate-950">
+<body class="relative bg-slate-950 text-white min-h-screen antialiased selection:bg-yellow-400 selection:text-slate-950">
 
-  <!-- Header / Navigation -->
-  <header class="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+  <!-- ========================================== -->
+  <!-- BACKGROUND IMAGE & OVERLAY CONFIGURATION   -->
+  <!-- ========================================== -->
+  <div class="fixed inset-0 z-0">
+    <!-- Replace "bg-photo.jpg" with your image URL or local relative path -->
+    <img 
+      src="bg-photo.jpg" 
+      alt="Background Poster" 
+      class="w-full h-full object-cover"
+    />
+    <!-- 
+      Dark Tint & Blur Overlay:
+      - Change bg-slate-950/80 to /70 (more image) or /90 (darker background)
+      - Change backdrop-blur-sm to backdrop-blur-md for a stronger blur
+    -->
+    <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MAIN SITE CONTENT (Z-INDEX ABOVE BG)       -->
+  <!-- ========================================== -->
+  <div class="relative z-10 flex flex-col min-h-screen justify-between">
+
+    <!-- Header / Navigation -->
+    <header class="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800/80 sticky top-0 z-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+        
+        <!-- Brand & Organization Info -->
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-yellow-400 flex items-center justify-center text-slate-950 font-extrabold text-base shadow-lg shadow-yellow-400/20">
+            HMTI
+          </div>
+          <div>
+            <h1 class="font-bold text-white text-sm sm:text-base leading-tight">Himpunan Mahasiswa Teknik Informatika</h1>
+            <p class="text-xs text-yellow-400 font-semibold tracking-wide">Divisi Kominfo • Kabinet AbhyasaSiddha</p>
+          </div>
+        </div>
+
+        <!-- Registration Period Badge -->
+        <div class="hidden sm:flex items-center gap-x-2 rounded-full bg-slate-800/90 px-3.5 py-1.5 text-xs font-medium text-slate-300 border border-slate-700">
+          <span class="h-2 w-2 rounded-full bg-yellow-400 animate-ping"></span>
+          <span class="text-slate-200 font-semibold">Registration Period:</span> 1 — 8 August 2026
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero & Main Content -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14 w-full flex-grow flex flex-col items-center">
       
-      <!-- Brand & Organization Info -->
-      <div class="flex items-center space-x-3">
-        <!-- Badge Icon Placeholder -->
-        <div class="w-10 h-10 rounded-xl bg-yellow-400 flex items-center justify-center text-slate-950 font-extrabold text-base shadow-lg shadow-yellow-400/20">
-          HMTI
-        </div>
-        <div>
-          <h1 class="font-bold text-white text-sm sm:text-base leading-tight">Himpunan Mahasiswa Teknik Informatika</h1>
-          <p class="text-xs text-yellow-400 font-semibold tracking-wide">Divisi Kominfo • Kabinet AbhyasaSiddha</p>
-        </div>
-      </div>
-
-      <!-- Registration Period Badge -->
-      <div class="hidden sm:flex items-center gap-x-2 rounded-full bg-slate-800 px-3.5 py-1.5 text-xs font-medium text-slate-300 border border-slate-700">
-        <span class="h-2 w-2 rounded-full bg-yellow-400 animate-ping"></span>
-        <span class="text-slate-200 font-semibold">Registration Period:</span> 1 — 8 August 2026
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero & Main Content -->
-  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14 w-full flex-grow flex flex-col items-center">
-    
-    <!-- Poster Headline Banner -->
-    <div class="text-center max-w-3xl mx-auto mb-10">
-      <span class="inline-block text-yellow-400 font-extrabold text-2xl sm:text-4xl md:text-5xl uppercase tracking-wider mb-2">
-        Looking For HMTI's Next Leaders
-      </span>
-      <h2 class="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight mt-1">
-        Open Recruitment<br/>
-        <span class="text-slate-300 font-bold">Ketua & Wakil Ketua HMTI 2026-2027</span>
-      </h2>
-      <p class="mt-4 text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-        Gunakan hak pilih Anda untuk menentukan arah kepemimpinan Himpunan Mahasiswa Teknik Informatika periode berikutnya.
-      </p>
-    </div>
-
-    <!-- Embedded RCV123 Voting Section -->
-    <div class="w-full max-w-4xl bg-slate-900 rounded-2xl shadow-2xl shadow-yellow-500/5 border border-slate-800 overflow-hidden mb-8">
-      
-      <!-- Card Header -->
-      <div class="bg-slate-800/90 px-6 py-4 border-b border-slate-700/80 flex items-center justify-between">
-        <div class="flex items-center space-x-2">
-          <span class="inline-block w-3 h-3 rounded-full bg-yellow-400"></span>
-          <span class="font-bold text-sm text-slate-100">Surat Suara Digital (Official Voting Frame)</span>
-        </div>
-        <span class="text-xs text-slate-400 font-medium">Verified RCV Ballot</span>
-      </div>
-
-      <!-- Iframe Voting Interface -->
-      <div class="p-2 sm:p-4 bg-slate-950/60">
-        <iframe 
-          src="https://www.rcv123.org/ballot/vmHm44jCp3r5FqmfmVXM9cM5" 
-          class="w-full h-[650px] border-0 rounded-xl bg-white shadow-inner"
-          title="Voting Pemilu Ketua & Wakil Ketua HMTI 2026-2027"
-          allowfullscreen>
-        </iframe>
-      </div>
-    </div>
-
-    <!-- Security & Instruction Notice -->
-    <div class="w-full max-w-4xl bg-slate-900/60 rounded-xl p-4 sm:p-5 border border-slate-800 flex items-start space-x-3.5">
-      <div class="p-2 bg-yellow-400/10 rounded-lg text-yellow-400 flex-shrink-0 mt-0.5">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-        </svg>
-      </div>
-      <div class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-        <p class="font-bold text-yellow-400 mb-1">Panduan Pemilihan & Privasi</p>
-        <p class="text-slate-400">
-          Setiap pemilih hanya dapat mengirimkan suara 1 kali. Pastikan Anda menyelesaikan urutan preferensi kandidat secara lengkap sebelum menekan tombol submit.
+      <!-- Poster Headline Banner -->
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="inline-block text-yellow-400 font-extrabold text-2xl sm:text-4xl md:text-5xl uppercase tracking-wider mb-2 drop-shadow-md">
+          Looking For HMTI's Next Leaders
+        </span>
+        <h2 class="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight mt-1">
+          Open Recruitment<br/>
+          <span class="text-slate-300 font-bold">Ketua & Wakil Ketua HMTI 2026-2027</span>
+        </h2>
+        <p class="mt-4 text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed drop-shadow">
+          Gunakan hak pilih Anda untuk menentukan arah kepemimpinan Himpunan Mahasiswa Teknik Informatika periode berikutnya.
         </p>
       </div>
-    </div>
 
-  </main>
+      <!-- Embedded RCV123 Voting Section -->
+      <div class="w-full max-w-4xl bg-slate-900/90 backdrop-blur-md rounded-2xl shadow-2xl shadow-yellow-500/5 border border-slate-800 overflow-hidden mb-8">
+        
+        <!-- Card Header -->
+        <div class="bg-slate-800/90 px-6 py-4 border-b border-slate-700/80 flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="inline-block w-3 h-3 rounded-full bg-yellow-400"></span>
+            <span class="font-bold text-sm text-slate-100">Surat Suara Digital (Official Voting Frame)</span>
+          </div>
+          <span class="text-xs text-slate-400 font-medium">Verified RCV Ballot</span>
+        </div>
 
-  <!-- Footer Matching Poster Details -->
-  <footer class="w-full border-t border-slate-800 bg-slate-900/90 py-6 text-xs text-slate-400">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      
-      <!-- Left: Social & Website Links -->
-      <div class="flex items-center space-x-4">
-        <span class="flex items-center space-x-1 font-medium text-slate-300">
-          <span>📷</span>
-          <span>@hmti_unsp</span>
-        </span>
-        <span class="text-slate-700">•</span>
-        <a href="https://hmti.nusaputra.ac.id" target="_blank" rel="noopener noreferrer" class="hover:underline text-slate-300 font-medium">
-          hmti.nusaputra.ac.id
-        </a>
+        <!-- Iframe Voting Interface -->
+        <div class="p-2 sm:p-4 bg-slate-950/60">
+          <iframe 
+            src="https://www.rcv123.org/ballot/vmHm44jCp3r5FqmfmVXM9cM5" 
+            class="w-full h-[650px] border-0 rounded-xl bg-white shadow-inner"
+            title="Voting Pemilu Ketua & Wakil Ketua HMTI 2026-2027"
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
 
-      <!-- Right: Cabinet Branding -->
-      <div class="flex items-center space-x-2 font-bold text-slate-200">
-        <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
-        <span>Kabinet <span class="italic text-yellow-400">AbhyasaSiddha</span></span>
+      <!-- Security & Instruction Notice -->
+      <div class="w-full max-w-4xl bg-slate-900/80 backdrop-blur-md rounded-xl p-4 sm:p-5 border border-slate-800/80 flex items-start space-x-3.5">
+        <div class="p-2 bg-yellow-400/10 rounded-lg text-yellow-400 flex-shrink-0 mt-0.5">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+        </div>
+        <div class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          <p class="font-bold text-yellow-400 mb-1">Panduan Pemilihan & Privasi</p>
+          <p class="text-slate-300">
+            Setiap pemilih hanya dapat mengirimkan suara 1 kali. Pastikan Anda menyelesaikan urutan preferensi kandidat secara lengkap sebelum menekan tombol submit.
+          </p>
+        </div>
       </div>
 
-    </div>
-  </footer>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-slate-800/80 bg-slate-900/90 backdrop-blur-md py-6 text-xs text-slate-400">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        
+        <!-- Left: Social & Website Links -->
+        <div class="flex items-center space-x-4">
+          <span class="flex items-center space-x-1 font-medium text-slate-300">
+            <span>📷</span>
+            <span>@hmti_unsp</span>
+          </span>
+          <span class="text-slate-700">•</span>
+          <a href="https://hmti.nusaputra.ac.id" target="_blank" rel="noopener noreferrer" class="hover:underline text-slate-300 font-medium">
+            hmti.nusaputra.ac.id
+          </a>
+        </div>
+
+        <!-- Right: Cabinet Branding -->
+        <div class="flex items-center space-x-2 font-bold text-slate-200">
+          <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+          <span>Kabinet <span class="italic text-yellow-400">AbhyasaSiddha</span></span>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
 
 </body>
 </html>
-"""
-
-with open("hmti_voting_landing.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-print("FILE_CREATED: hmti_voting_landing.html")
